@@ -60,7 +60,7 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
             </div>
             <div>
               <span className="text-lg font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors duration-300 flex items-center gap-1.5">
-                MLN111 <GraduationCap className="h-4 w-4 text-emerald-400" />
+                MLN122 <GraduationCap className="h-4 w-4 text-emerald-400" />
               </span>
               <p className="text-[10px] text-slate-400 tracking-wider uppercase font-medium">Chương 5 · Nhóm 5</p>
             </div>

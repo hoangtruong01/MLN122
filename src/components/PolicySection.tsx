@@ -3,26 +3,39 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from "react";
-import { Check, ClipboardList, ShieldAlert, Zap, Layers, RefreshCw } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Check, ClipboardList, Zap } from "lucide-react";
 import { motion } from "motion/react";
-import { presentationData, PolicyItem } from "../data/presentationData";
+import { presentationData } from "../data/presentationData";
 
 export default function PolicySection() {
   const { title, subtitle, items } = presentationData.policies;
 
   // Track checked policies for interactive Government Action score simulation
-  const [activePolicyIds, setActivePolicyIds] = useState<string[]>(
-    items.slice(0, 3).map((item) => item.id) // Default first 3 active
-  );
+  const [activePolicyIds, setActivePolicyIds] = useState<string[]>([]);
 
-  const togglePolicy = (id: string) => {
-    if (activePolicyIds.includes(id)) {
-      setActivePolicyIds(activePolicyIds.filter((item) => item !== id));
-    } else {
-      setActivePolicyIds([...activePolicyIds, id]);
-    }
-  };
+  // Scroll spy to automatically select policies as they cross 75% of the viewport
+  useEffect(() => {
+    const handleScroll = () => {
+      const activeIds: string[] = [];
+      items.forEach((item) => {
+        const el = document.getElementById(`policy-item-${item.id}`);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const triggerPoint = window.innerHeight * 0.75;
+          if (rect.top < triggerPoint) {
+            activeIds.push(item.id);
+          }
+        }
+      });
+      setActivePolicyIds(activeIds);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Initial run
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [items]);
 
   const selectAll = () => {
     setActivePolicyIds(items.map((item) => item.id));
@@ -40,8 +53,8 @@ export default function PolicySection() {
   return (
     <section id="giai-phap" className="py-24 bg-slate-950 text-white relative">
       {/* Decorative gradients */}
-      <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-3xl animate-pulse" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -53,7 +66,7 @@ export default function PolicySection() {
             viewport={{ once: true }}
             className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-4"
           >
-            <ClipboardList className="w-3.5 h-3.5" />
+            <ClipboardList className="w-3.5 h-3.5 text-emerald-400" />
             <span>Công cụ vĩ mô chính sách</span>
           </motion.div>
           
@@ -69,7 +82,7 @@ export default function PolicySection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start" id="policy-content-grid">
           
           {/* Left Block: Interactive Checklist */}
-          <div className="lg:col-span-7 space-y-4" id="policy-checklist">
+          <div className="lg:col-span-7 space-y-6" id="policy-checklist">
             <div className="flex items-center justify-between mb-4 px-2">
               <span className="text-xs uppercase font-bold tracking-widest text-slate-500 font-mono">
                 Danh mục đòn bẩy vĩ mô ({items.length})
@@ -109,26 +122,25 @@ export default function PolicySection() {
               };
 
               return (
-                <button
+                <div
                   key={item.id}
                   id={`policy-item-${item.id}`}
-                  onClick={() => togglePolicy(item.id)}
-                  className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 flex items-start space-x-4 cursor-pointer relative ${
+                  className={`p-6 rounded-3xl border transition-all duration-500 flex items-start space-x-5 relative ${
                     isChecked
-                      ? "bg-slate-900/60 border-emerald-500/30 shadow-lg shadow-emerald-500/5"
-                      : "bg-slate-950/40 border-slate-850 hover:border-slate-750"
+                      ? "bg-slate-900/60 border-emerald-500/40 shadow-xl shadow-emerald-500/5 scale-[1.01]"
+                      : "bg-slate-950/15 border-slate-900/60 opacity-40 scale-[0.99]"
                   }`}
                 >
-                  <div className={`mt-1 flex-shrink-0 w-6 h-6 rounded-lg border flex items-center justify-center transition-all duration-200 ${
+                  <div className={`mt-1 flex-shrink-0 w-6 h-6 rounded-lg border flex items-center justify-center transition-all duration-300 ${
                     isChecked
                       ? "bg-emerald-500 border-emerald-400 text-slate-950"
-                      : "border-slate-700 hover:border-slate-600 bg-slate-900"
+                      : "border-slate-800 bg-slate-950"
                   }`}>
                     {isChecked && <Check className="w-4 h-4 stroke-[3]" />}
                   </div>
 
                   <div className="flex-1">
-                    <div className="flex items-center space-x-2.5 mb-1.5">
+                    <div className="flex items-center space-x-2.5 mb-2">
                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold border ${getCategoryBadge(item.category)}`}>
                         {item.category}
                       </span>
@@ -136,22 +148,22 @@ export default function PolicySection() {
                         Tác động: {item.impact}
                       </span>
                     </div>
-                    <h4 className={`text-base font-bold transition-colors ${
-                      isChecked ? "text-emerald-300 font-semibold" : "text-white"
+                    <h4 className={`text-base sm:text-lg font-bold transition-colors duration-300 ${
+                      isChecked ? "text-emerald-300" : "text-white"
                     }`}>
                       {item.title}
                     </h4>
-                    <p className="text-slate-400 text-xs sm:text-sm mt-1 leading-relaxed">
+                    <p className="text-slate-400 text-xs sm:text-sm mt-1.5 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
 
           {/* Right Block: Simulated Impact / Dashboard view */}
-          <div className="lg:col-span-5 bg-slate-900/40 border border-slate-850 p-6 sm:p-8 rounded-3xl sticky top-28 shadow-2xl" id="policy-simulation-panel">
+          <div className="lg:col-span-5 bg-slate-900/40 border border-slate-850 p-6 sm:p-8 rounded-3xl lg:sticky lg:top-36 shadow-2xl backdrop-blur-xl" id="policy-simulation-panel">
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
             
             <div className="flex items-center space-x-2 text-emerald-400 mb-6">
@@ -161,7 +173,7 @@ export default function PolicySection() {
 
             <h3 className="text-xl font-bold text-white mb-2">Đánh Giá Hiệu Lực Can Thiệp</h3>
             <p className="text-xs text-slate-400 leading-relaxed mb-8">
-              Kéo kích hoạt danh mục chính sách bên cạnh để đo đếm khả năng đáp ứng mục tiêu dân sinh của cơ chế Chính phủ.
+              Cuộn xuống để tự động kích hoạt danh mục chính sách bên cạnh và đo đếm khả năng đáp ứng mục tiêu dân sinh của cơ chế Chính phủ.
             </p>
 
             {/* Simulated Progress bar */}
@@ -170,7 +182,7 @@ export default function PolicySection() {
                 <span className="text-xs text-slate-400 uppercase font-bold tracking-wider font-mono">Hiệu lực can thiệp vĩ mô</span>
                 <span className="text-2xl font-black text-emerald-400 font-mono">{percentage}%</span>
               </div>
-              <div className="w-full bg-slate-950 h-3.5 rounded-full overflow-hidden border border-slate-800 p-0.5">
+              <div className="w-full bg-slate-950 h-3.5 rounded-full overflow-hidden border border-slate-900 p-0.5">
                 <motion.div
                   id="policy-progress-bar"
                   animate={{ width: `${percentage}%` }}
@@ -188,7 +200,7 @@ export default function PolicySection() {
                 </div>
                 <div>
                   <p className="text-xs text-slate-500 font-bold font-mono">ĐÁNH GIÁ CHUNG:</p>
-                  <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                  <p className="text-xs text-slate-350 mt-1 leading-relaxed min-h-[60px] flex items-center">
                     {percentage === 0 && "Chưa áp dụng chính sách nào. Thị trường tự do hoàn toàn có thể dẫn đến thất bại hệ thống."}
                     {percentage > 0 && percentage <= 40 && "Can thiệp tối thiểu. Doanh nghiệp vẫn ưu tiên tối đa hóa lợi nhuận thương mại, nhà ở xã hội hầu như bị bế tắc."}
                     {percentage > 40 && percentage <= 80 && "Mô hình ổn định trung độ. Kết hợp đòn bẩy thuế đất và tiền tệ giúp bắt đầu tháo gỡ khó khăn cho các bên."}

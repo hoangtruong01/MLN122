@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from "react";
-import { AlertTriangle, HelpCircle, ArrowRightLeft, Building2, UserCheck, Flame, Scale, ChevronDown, Check } from "lucide-react";
+import { useState, useEffect } from "react";
+import { AlertTriangle, HelpCircle, ArrowRightLeft, Building2, Flame, Scale, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { presentationData } from "../data/presentationData";
 
@@ -15,9 +15,38 @@ export default function SituationSection() {
   // Active state for discussion questions guidelines drawer
   const [openQuestionId, setOpenQuestionId] = useState<string | null>(null);
 
+  // Active scroll step for narrative
+  const [activeStep, setActiveStep] = useState<string>("problem");
+
   const toggleQuestion = (id: string) => {
     setOpenQuestionId(openQuestionId === id ? null : id);
   };
+
+  // Setup IntersectionObserver for narrative steps
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const step = entry.target.id.replace("narrative-step-", "");
+            setActiveStep(step);
+          }
+        });
+      },
+      {
+        rootMargin: "-35% 0px -45% 0px",
+        threshold: 0.1,
+      }
+    );
+
+    const steps = ["problem", "challenge", "dilemma"];
+    steps.forEach((stepId) => {
+      const el = document.getElementById(`narrative-step-${stepId}`);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="tinh-huong" className="py-24 bg-slate-950 text-white relative">
@@ -47,71 +76,136 @@ export default function SituationSection() {
           </p>
         </div>
 
-        {/* ================= CONTENT & INFOGRAPHICS ================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
+        {/* ================= CONTENT & INFOGRAPHICS (SCROLLYTELLING VIEW) ================= */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-24 relative">
           
-          {/* Left Col: Narrative & Dilemma box */}
-          <div className="lg:col-span-7 space-y-6" id="situation-narrative">
-            <div className="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl relative">
-              <div className="absolute top-4 right-4 text-emerald-500/10"><Building2 className="w-12 h-12" /></div>
-              <h3 className="text-lg font-bold text-teal-300 mb-3 flex items-center gap-1.5ClassName">
-                <span className="w-2 h-2 rounded-full bg-teal-400" /> Nhu cầu thực tế thế hệ trẻ
-              </h3>
-              <p className="text-slate-350 text-sm sm:text-base leading-relaxed">
-                {narrative.problem}
-              </p>
-            </div>
-
-            <div className="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl relative">
-              <div className="absolute top-4 right-4 text-rose-500/10"><Flame className="w-12 h-12" /></div>
-              <h3 className="text-lg font-bold text-rose-400 mb-3 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-rose-400" /> Động cơ tối đa lợi nhuận của doanh nghiệp
-              </h3>
-              <p className="text-slate-350 text-sm sm:text-base leading-relaxed">
-                {narrative.challenge}
-              </p>
-            </div>
-
-            {/* Dilemma Warning Box */}
-            <motion.div
-              initial={{ scale: 0.98 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              className="p-6 bg-gradient-to-r from-red-950/40 to-amber-950/40 border border-red-500/20 rounded-2xl flex items-start space-x-4 shadow-xl"
-              id="situation-dilemma-box"
+          {/* Left Col: Scrollable Narrative steps */}
+          <div className="lg:col-span-7 space-y-16" id="situation-narrative">
+            
+            {/* Step 1: Problem */}
+            <div
+              id="narrative-step-problem"
+              className="scroll-mt-32 py-4"
             >
-              <div className="p-3 bg-red-900/30 rounded-xl text-red-400 border border-red-500/20 mt-1">
-                <ArrowRightLeft className="w-5 h-5 animate-pulse" />
-              </div>
-              <div>
-                <h4 className="text-sm font-extrabold uppercase tracking-wider text-red-300 mb-1">Mâu thuẫn nan giải (Trọng tâm bài học)</h4>
-                <p className="text-sm text-amber-200 leading-relaxed font-medium">
-                  "{narrative.dilemma}"
+              <div className={`transition-all duration-500 p-6 sm:p-8 rounded-3xl border ${
+                activeStep === "problem"
+                  ? "bg-slate-900/60 border-teal-500/40 shadow-xl shadow-teal-500/5 scale-[1.01]"
+                  : "bg-slate-900/20 border-slate-900 opacity-60"
+              }`}>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-teal-300 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-teal-400" /> Nhu cầu thực tế thế hệ trẻ
+                  </h3>
+                  <Building2 className={`w-8 h-8 transition-colors ${
+                    activeStep === "problem" ? "text-teal-400" : "text-slate-700"
+                  }`} />
+                </div>
+                <p className="text-slate-350 text-sm sm:text-base leading-relaxed">
+                  {narrative.problem}
                 </p>
               </div>
-            </motion.div>
+            </div>
+
+            {/* Step 2: Challenge */}
+            <div
+              id="narrative-step-challenge"
+              className="scroll-mt-32 py-4"
+            >
+              <div className={`transition-all duration-500 p-6 sm:p-8 rounded-3xl border ${
+                activeStep === "challenge"
+                  ? "bg-slate-900/60 border-rose-500/40 shadow-xl shadow-rose-500/5 scale-[1.01]"
+                  : "bg-slate-900/20 border-slate-900 opacity-60"
+              }`}>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-rose-400 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-rose-400" /> Động cơ tối đa lợi nhuận của doanh nghiệp
+                  </h3>
+                  <Flame className={`w-8 h-8 transition-colors ${
+                    activeStep === "challenge" ? "text-rose-500 animate-pulse" : "text-slate-700"
+                  }`} />
+                </div>
+                <p className="text-slate-350 text-sm sm:text-base leading-relaxed">
+                  {narrative.challenge}
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3: Dilemma */}
+            <div
+              id="narrative-step-dilemma"
+              className="scroll-mt-32 py-4"
+            >
+              <div className={`transition-all duration-500 p-6 sm:p-8 rounded-3xl border ${
+                activeStep === "dilemma"
+                  ? "bg-gradient-to-r from-red-950/30 to-amber-950/30 border-red-500/40 shadow-2xl shadow-red-500/10 scale-[1.01]"
+                  : "bg-slate-900/20 border-slate-900 opacity-60"
+              }`}>
+                <div className="flex items-start space-x-4">
+                  <div className={`p-3 rounded-2xl border transition-all duration-500 ${
+                    activeStep === "dilemma"
+                      ? "bg-red-500/10 border-red-500/40 text-red-400 shadow-lg"
+                      : "bg-slate-900 border-slate-800 text-slate-500"
+                  }`}>
+                    <ArrowRightLeft className={`w-6 h-6 ${activeStep === "dilemma" ? "animate-spin" : ""}`} style={{ animationDuration: "3s" }} />
+                  </div>
+                  <div>
+                    <h4 className={`text-sm font-extrabold uppercase tracking-wider mb-2 transition-colors ${
+                      activeStep === "dilemma" ? "text-red-300" : "text-slate-400"
+                    }`}>Mâu thuẫn nan giải (Trọng tâm bài học)</h4>
+                    <p className={`text-sm leading-relaxed font-medium transition-colors duration-500 ${
+                      activeStep === "dilemma" ? "text-amber-200" : "text-slate-400"
+                    }`}>
+                      "{narrative.dilemma}"
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          {/* Right Col: Interactive Visual Metrics Grid */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-4" id="situation-metrics">
-            {infographics.map((info, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                className="bg-gradient-to-b from-slate-900 to-slate-950/70 border border-slate-850 p-5 rounded-2xl hover:border-slate-700 hover:shadow-lg transition-all text-left"
-              >
-                <span className="text-xs font-semibold text-slate-500 block mb-2">{info.label}</span>
-                <div className="flex items-baseline mb-1">
-                  <span className="text-2xl sm:text-3xl font-black text-white tracking-tight">{info.value}</span>
-                  <span className="text-xs font-bold text-teal-400 ml-1.5">{info.unit}</span>
+          {/* Right Col: Sticky Metrics Grid */}
+          <div className="hidden lg:grid lg:col-span-5 grid-cols-2 gap-4 lg:sticky lg:top-36 self-start" id="situation-metrics">
+            {infographics.map((info, idx) => {
+              // Determine if card is active based on active scroll step
+              let isHighlighted = false;
+              let highlightBorderColor = "border-slate-850";
+              let badgeColor = "text-slate-500";
+
+              if (activeStep === "problem" && (idx === 0 || idx === 1)) {
+                isHighlighted = true;
+                highlightBorderColor = "border-teal-500/40 shadow-teal-500/10 bg-slate-900/70";
+                badgeColor = "text-teal-400";
+              } else if (activeStep === "challenge" && idx === 2) {
+                isHighlighted = true;
+                highlightBorderColor = "border-rose-500/40 shadow-rose-500/10 bg-slate-900/70";
+                badgeColor = "text-rose-400";
+              } else if (activeStep === "dilemma" && idx === 3) {
+                isHighlighted = true;
+                highlightBorderColor = "border-red-500/40 shadow-red-500/10 bg-slate-900/70";
+                badgeColor = "text-red-400";
+              }
+
+              return (
+                <div
+                  key={idx}
+                  className={`border p-6 rounded-3xl transition-all duration-500 text-left ${
+                    isHighlighted
+                      ? `scale-[1.05] z-10 shadow-xl ${highlightBorderColor}`
+                      : "bg-slate-950/20 border-slate-900/50 opacity-30 scale-95"
+                  }`}
+                >
+                  <span className={`text-xs font-semibold block mb-3 transition-colors duration-500 ${badgeColor}`}>{info.label}</span>
+                  <div className="flex items-baseline mb-2">
+                    <span className="text-2xl sm:text-3xl font-black text-white tracking-tight">{info.value}</span>
+                    <span className={`text-xs font-bold ml-1.5 transition-colors duration-500 ${badgeColor}`}>{info.unit}</span>
+                  </div>
+                  <p className="text-xs text-slate-400 leading-relaxed">{info.desc}</p>
                 </div>
-                <p className="text-[11px] text-slate-400 leading-snug">{info.desc}</p>
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
+
         </div>
 
         {/* ================= SECTION: CÂU HỎI THẢO LUẬN PHẢN BIỆN ================= */}
@@ -138,10 +232,10 @@ export default function SituationSection() {
                 <div
                   key={q.id}
                   id={`discussion-card-${q.id}`}
-                  className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 hover:border-blue-500/20 transition-all duration-300 shadow-xl flex flex-col justify-between"
+                  className="bg-slate-900/40 border border-slate-850 rounded-3xl p-6 sm:p-8 hover:border-indigo-500/30 transition-all duration-300 shadow-xl flex flex-col justify-between"
                 >
                   <div>
-                    <span className="inline-block px-3 py-1 bg-blue-950/80 border border-blue-500/20 text-blue-300 rounded-lg text-xs font-bold uppercase tracking-wider mb-4">
+                    <span className="inline-block px-3 py-1 bg-indigo-950/55 border border-indigo-500/25 text-indigo-300 rounded-lg text-xs font-bold uppercase tracking-wider mb-4">
                       {q.id.toUpperCase()} - {q.label}
                     </span>
                     <h3 className="text-base sm:text-lg font-bold text-slate-100 mb-6 leading-relaxed">
@@ -149,7 +243,7 @@ export default function SituationSection() {
                     </h3>
                   </div>
 
-                  <div className="border-t border-slate-950 pt-4">
+                  <div className="border-t border-slate-900 pt-4">
                     <button
                       id={`btn-toggle-answer-${q.id}`}
                       onClick={() => toggleQuestion(q.id)}

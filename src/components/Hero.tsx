@@ -4,7 +4,7 @@
  */
 
 import { ArrowRight, Play, Landmark, Sparkles, Building2, ShieldAlert } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { presentationData } from "../data/presentationData";
 
 interface HeroProps {
@@ -13,6 +13,12 @@ interface HeroProps {
 
 export default function Hero({ onNavigate }: HeroProps) {
   const { badge, title, subtitle, ctaStart, ctaSituation } = presentationData.hero;
+
+  // Track page scroll to apply parallax fade-out to Hero text
+  const { scrollY } = useScroll();
+  const yContent = useTransform(scrollY, [0, 500], [0, -80]);
+  const opacityContent = useTransform(scrollY, [0, 500], [1, 0]);
+  const scaleContent = useTransform(scrollY, [0, 500], [1, 0.95]);
 
   return (
     <section
@@ -27,7 +33,10 @@ export default function Hero({ onNavigate }: HeroProps) {
       {/* Decorative Grid Overlays */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+      <motion.div 
+        style={{ y: yContent, opacity: opacityContent, scale: scaleContent }}
+        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 w-full"
+      >
         
         {/* Badge */}
         <motion.div
@@ -58,7 +67,7 @@ export default function Hero({ onNavigate }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto mb-10 font-normal leading-relaxed"
+          className="text-lg sm:text-xl text-slate-350 max-w-3xl mx-auto mb-10 font-normal leading-relaxed"
         >
           {subtitle}
         </motion.p>
@@ -69,7 +78,7 @@ export default function Hero({ onNavigate }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
           <button
             id="btn-start-presentation"
@@ -106,42 +115,60 @@ export default function Hero({ onNavigate }: HeroProps) {
               <span className="w-3 h-3 rounded-full bg-amber-500" />
               <span className="w-3 h-3 rounded-full bg-emerald-500" />
             </div>
-            <div className="text-[11px] font-mono text-slate-500 bg-slate-950 px-3 py-1 rounded-full">
+            <div className="text-[11px] font-mono text-slate-500 bg-slate-950 px-3 py-1 rounded-full border border-slate-800">
               STATUS: THUYẾT TRÌNH LIVE
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            <div className="p-4 bg-slate-950/40 rounded-2xl border border-slate-900 hover:border-slate-850/80 transition-colors">
+            <div className="p-4 bg-slate-950/40 rounded-2xl border border-slate-900 hover:border-slate-800 transition-colors">
               <div className="flex items-center space-x-2 text-blue-400 mb-2">
                 <Landmark className="h-4 w-4" />
                 <span className="text-xs uppercase font-bold tracking-wider font-mono">Chủ đề lý luận</span>
               </div>
               <h3 className="text-white font-bold text-sm mb-1">Mô hình kinh tế thị trường định hướng XHCN</h3>
-              <p className="text-xs text-slate-400">Các quy luật thị trường kết hợp định hướng xã hội chủ nghĩa nhân văn.</p>
+              <p className="text-xs text-slate-400 leading-relaxed">Các quy luật thị trường kết hợp định hướng xã hội chủ nghĩa nhân văn.</p>
             </div>
 
-            <div className="p-4 bg-slate-950/40 rounded-2xl border border-slate-900 hover:border-slate-850/80 transition-colors">
+            <div className="p-4 bg-slate-950/40 rounded-2xl border border-slate-900 hover:border-slate-800 transition-colors">
               <div className="flex items-center space-x-2 text-teal-400 mb-2">
                 <Building2 className="h-4 w-4" />
                 <span className="text-xs uppercase font-bold tracking-wider font-mono">Thực tiễn mâu thuẫn</span>
               </div>
               <h3 className="text-white font-bold text-sm mb-1">Nhà ở xã hội & nhà thương mại cao cấp</h3>
-              <p className="text-xs text-slate-400">Doanh nghiệp tối ưu lợi nhuận đẩy giá trị bất động sản lên cao vượt tầm tay.</p>
+              <p className="text-xs text-slate-400 leading-relaxed">Doanh nghiệp tối ưu lợi nhuận đẩy giá trị bất động sản lên cao vượt tầm tay.</p>
             </div>
 
-            <div className="p-4 bg-slate-950/40 rounded-2xl border border-slate-900 hover:border-slate-850/80 transition-colors">
+            <div className="p-4 bg-slate-950/40 rounded-2xl border border-slate-900 hover:border-slate-800 transition-colors">
               <div className="flex items-center space-x-2 text-purple-400 mb-2">
                 <ShieldAlert className="h-4 w-4" />
                 <span className="text-xs uppercase font-bold tracking-wider font-mono">Nhiệm vụ quản lý</span>
               </div>
               <h3 className="text-white font-bold text-sm mb-1">Giải pháp vĩ mô vì dân sinh</h3>
-              <p className="text-xs text-slate-400">Tái lập sự công bằng, an cư lập nghiệp và hài hòa lợi ích các bên.</p>
+              <p className="text-xs text-slate-400 leading-relaxed">Tái lập sự công bằng, an cư lập nghiệp và hài hòa lợi ích các bên.</p>
             </div>
           </div>
         </motion.div>
 
-      </div>
+      </motion.div>
+
+      {/* Floating pulsing mouse scroll indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.8 }}
+        transition={{ delay: 1, duration: 1 }}
+        style={{ opacity: opacityContent }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 text-slate-500 hover:text-slate-350 transition-colors duration-300 select-none z-10 pointer-events-none"
+      >
+        <span className="text-[10px] uppercase font-bold tracking-widest font-mono">Cuộn xuống</span>
+        <div className="w-6 h-10 border-2 border-slate-800 rounded-full flex justify-center p-1.5">
+          <motion.div 
+            animate={{ y: [0, 12, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+            className="w-1.5 h-1.5 bg-blue-500 rounded-full"
+          />
+        </div>
+      </motion.div>
     </section>
   );
 }

@@ -6,7 +6,7 @@
 ---
 
 ## 📌 Tổng Quan Dự Án
-Dự án này là một **Website thuyết trình tương tác** phục vụ môn học **Kinh tế chính trị Mác - Lênin (MLN111)**, tập trung vào **Chương 5: Kinh tế thị trường định hướng xã hội chủ nghĩa và các quan hệ lợi ích kinh tế ở Việt Nam**.
+Dự án này là một **Website thuyết trình tương tác** phục vụ môn học **Kinh tế chính trị Mác - Lênin (MLN122)**, tập trung vào **Chương 5: Kinh tế thị trường định hướng xã hội chủ nghĩa và các quan hệ lợi ích kinh tế ở Việt Nam**.
 
 Đặc biệt, trang web vận dụng lý thuyết đã học để phân tích và đưa ra giải pháp cho tình huống thực tế: **Bài toán phát triển Nhà ở xã hội (NOXH)** tại Việt Nam - nơi xung đột lợi ích giữa Doanh nghiệp (muốn tối đa hóa lợi nhuận) và Người dân thu nhập thấp (cần có nhà ở) diễn ra rõ rệt nhất.
 

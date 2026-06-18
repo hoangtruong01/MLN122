@@ -45,7 +45,7 @@ export interface FAQItem {
 
 export const presentationData = {
   hero: {
-    badge: "MLN111 · Chương 5 · Nhóm thuyết trình",
+    badge: "MLN122 · Chương 5 · Nhóm thuyết trình",
     title: "Kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam",
     subtitle: "Phân tích lý thuyết Chương 5 và vận dụng thực tiễn vào bài toán phát triển Nhà ở Xã hội trong nền kinh tế thị trường hiện nay.",
     ctaStart: "Bắt đầu thuyết trình",
@@ -258,7 +258,7 @@ export const presentationData = {
     intro: "Để nội dung lý thuyết Chương 5 không chỉ nằm trên trang sách, nhóm chúng tôi đã cụ thể hóa bằng một 'Dự thảo mô phỏng bản kiến nghị gửi các cơ quan hoạch định chính sách'. Đây là ứng dụng thực tế sinh động của bài học.",
     mockDocument: {
       title: "BẢN KIẾN NGHỊ ĐỔI MỚI CƠ CHẾ QUẢN LÝ DỰ ÁN NHÀ Ở PHÚC LỢI VÀ AN SINH XÃ HỘI TẠI ĐÔ THỊ LỚN",
-      meta: "Mã số: KN-MLN111_C5 / Nơi nhận đề xuất: Bộ Xây dựng Việt Nam",
+      meta: "Mã số: KN-MLN122_C5 / Nơi nhận đề xuất: Bộ Xây dựng Việt Nam",
       sections: [
         {
           key: "prob",
@@ -338,8 +338,8 @@ export const presentationData = {
     ] as FAQItem[]
   },
   footer: {
-    studentGroup: "Nhóm thuyết trình Chương 5 · MLN111",
+    studentGroup: "Nhóm thuyết trình Chương 5 · MLN122",
     academicYear: "Học kỳ 1 - Năm học 2026",
-    copyright: "© 2026 MLN111 Presentation Applet. Made for Excellence in Education."
+    copyright: "© 2026 MLN122 Presentation Applet. Made for Excellence in Education."
   }
 };

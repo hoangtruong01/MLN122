@@ -13,7 +13,7 @@ export default function ConclusionSection() {
   return (
     <section id="ket-luan" className="py-24 bg-slate-950 text-white relative">
       {/* Decorative Blur Backgrounds */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-3xl animate-pulse" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -56,11 +56,11 @@ export default function ConclusionSection() {
             const getColorDecoration = (i: number) => {
               switch (i) {
                 case 0:
-                  return "border-blue-500/20 hover:border-blue-500/40 from-blue-950/20";
+                  return "border-blue-500/20 hover:border-blue-500/50 from-blue-950/20 shadow-blue-500/5";
                 case 1:
-                  return "border-teal-500/20 hover:border-teal-500/40 from-teal-950/20";
+                  return "border-teal-500/20 hover:border-teal-500/50 from-teal-950/20 shadow-teal-500/5";
                 case 2:
-                  return "border-purple-500/20 hover:border-purple-500/40 from-purple-950/20";
+                  return "border-purple-500/20 hover:border-purple-500/50 from-purple-950/20 shadow-purple-500/5";
                 default:
                   return "border-slate-850 from-slate-900/40";
               }
@@ -70,18 +70,18 @@ export default function ConclusionSection() {
               <motion.div
                 key={idx}
                 id={`conclusion-card-${idx}`}
-                initial={{ opacity: 0, y: 35 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className={`group p-6 sm:p-8 rounded-3xl border bg-gradient-to-b to-slate-950/60 shadow-xl flex flex-col justify-between hover:-translate-y-1 transition-all duration-300 ${getColorDecoration(idx)}`}
+                transition={{ duration: 0.7, delay: idx * 0.15, type: "spring", stiffness: 45 }}
+                className={`group p-6 sm:p-8 rounded-3xl border bg-gradient-to-b to-slate-950/70 shadow-2xl flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-3xl transition-all duration-300 ${getColorDecoration(idx)}`}
               >
                 <div>
-                  <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-900/80">
-                    <div className="p-3 bg-slate-950 rounded-xl border border-slate-905">
+                  <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-900">
+                    <div className="p-3 bg-slate-950 rounded-xl border border-slate-900">
                       {getIcon(idx)}
                     </div>
-                    <span className="text-3xl font-black font-mono text-slate-800 tracking-tight group-hover:text-slate-700/80 transition-colors">
+                    <span className="text-3xl font-black font-mono text-slate-800 tracking-tight group-hover:text-slate-700 transition-colors">
                       0{idx + 1}
                     </span>
                   </div>
@@ -99,7 +99,7 @@ export default function ConclusionSection() {
                   </p>
                 </div>
 
-                <div className="flex items-center space-x-1.5 pt-4 border-t border-slate-900 text-[11px] font-semibold text-slate-500">
+                <div className="flex items-center space-x-1.5 pt-4 border-t border-slate-900 text-[11px] font-semibold text-slate-550">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   <span>Bài học cốt lõi Việt Nam</span>
                 </div>

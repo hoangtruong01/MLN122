@@ -1,6 +1,6 @@
 {
   "name": "Thuyết trình Kinh tế thị trường XHCN",
-  "description": "Website thuyết trình tương tác Chương 5 môn học MLN111 về Kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam và bài toán nhà ở xã hội.",
+  "description": "Website thuyết trình tương tác Chương 5 môn học MLN122 về Kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam và bài toán nhà ở xã hội.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

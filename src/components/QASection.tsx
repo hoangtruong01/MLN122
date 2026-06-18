@@ -242,7 +242,7 @@ export default function QASection() {
               </div>
               <div>
                 <p className="text-[10px] text-slate-500 italic">Trưởng nhóm kiểm soát:</p>
-                <p className="text-xs font-semibold text-slate-350">Hệ thống hỗ trợ đỗ kết quả tự động MLN111_C5</p>
+                <p className="text-xs font-semibold text-slate-350">Hệ thống hỗ trợ đỗ kết quả tự động MLN122_C5</p>
               </div>
             </div>
           </div>

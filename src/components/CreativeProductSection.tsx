@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, SVGProps } from "react";
-import { FileText, Download, Play, Check, Send, Sparkles, X, HeartHandshake, HelpCircle } from "lucide-react";
+import { useState, useEffect, SVGProps, UIEvent } from "react";
+import { FileText, Download, Play, Check, Sparkles, X, HeartHandshake } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { presentationData } from "../data/presentationData";
 
@@ -12,11 +12,14 @@ export default function CreativeProductSection() {
   const { title, subtitle, intro, mockDocument } = presentationData.creativeProduct;
 
   // Customization states
-  const [authorName, setAuthorName] = useState("Nhóm 5 - Lớp MLN111_02");
+  const [authorName, setAuthorName] = useState("Nhóm 5 - Lớp MLN122_02");
   const [targetCity, setTargetCity] = useState("Hà Nội và TP.HCM");
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  // Scroll mapping state
+  const [activeDocSec, setActiveDocSec] = useState<string>("prob");
 
   const startDownload = () => {
     setIsDownloading(true);
@@ -25,6 +28,38 @@ export default function CreativeProductSection() {
       setDownloadSuccess(true);
       setTimeout(() => setDownloadSuccess(false), 3000);
     }, 2000);
+  };
+
+  // Bidirectional scrolling scroll-spy logic
+  const handleDocScroll = (e: UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const sections = ["prob", "cause", "sol", "impact"];
+    
+    for (const secKey of sections) {
+      const el = document.getElementById(`doc-section-${secKey}`);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        
+        // If element is at the top of viewport threshold, set as active
+        if (rect.top - containerRect.top < 120 && rect.bottom - containerRect.top > 60) {
+          setActiveDocSec(secKey);
+          break;
+        }
+      }
+    }
+  };
+
+  const scrollToDocSection = (secKey: string) => {
+    const container = document.getElementById("document-scrollbar");
+    const el = document.getElementById(`doc-section-${secKey}`);
+    if (container && el) {
+      container.scrollTo({
+        top: el.offsetTop - container.offsetTop - 10,
+        behavior: "smooth"
+      });
+      setActiveDocSec(secKey);
+    }
   };
 
   return (
@@ -59,7 +94,7 @@ export default function CreativeProductSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start" id="creative-product-grid">
           
           {/* Left Block: Interactive Customizer Panel */}
-          <div className="lg:col-span-4 bg-slate-950/65 border border-slate-800 p-6 sm:p-8 rounded-3xl space-y-6 shadow-2xl" id="creative-customizer">
+          <div className="lg:col-span-4 bg-slate-950/65 border border-slate-800 p-6 sm:p-8 rounded-3xl space-y-6 shadow-2xl lg:sticky lg:top-36 self-start z-10 backdrop-blur-xl" id="creative-customizer">
             <div className="flex items-center space-x-2 mb-2 pb-3 border-b border-slate-900/80">
               <Sparkles className="w-4.5 h-4.5 text-purple-400" />
               <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">Tùy biến tài liệu kiến nghị</h3>
@@ -94,6 +129,38 @@ export default function CreativeProductSection() {
               </select>
             </div>
 
+            {/* Document Map / Table of Contents scrollspy */}
+            <div className="space-y-2.5 pt-4 border-t border-slate-900">
+              <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider font-mono">Bản đồ tài liệu (Cuộn liên kết):</label>
+              <div className="grid grid-cols-2 gap-2">
+                {mockDocument.sections.map((sec) => {
+                  const isActive = activeDocSec === sec.key;
+                  const getShortTitle = (key: string) => {
+                    switch (key) {
+                      case "prob": return "I. Hiện trạng";
+                      case "cause": return "II. Nguyên nhân";
+                      case "sol": return "III. Giải pháp";
+                      case "impact": return "IV. Tác động";
+                      default: return sec.title;
+                    }
+                  };
+                  return (
+                    <button
+                      key={sec.key}
+                      onClick={() => scrollToDocSection(sec.key)}
+                      className={`text-left text-[11px] px-3 py-2.5 rounded-xl border transition-all cursor-pointer ${
+                        isActive
+                          ? "bg-purple-950/40 border-purple-500/40 text-purple-300 font-bold"
+                          : "bg-slate-900/40 border-slate-900 text-slate-450 hover:text-slate-200"
+                      }`}
+                    >
+                      {getShortTitle(sec.key)}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <div className="space-y-3 pt-4 border-t border-slate-900">
               <button
                 id="btn-trigger-download"
@@ -113,7 +180,7 @@ export default function CreativeProductSection() {
                   </>
                 ) : (
                   <>
-                    <Download className="w-4 h-4" />
+                    <FileText className="w-4 h-4" />
                     <span>Tải bản đề nghị chính sách (PDF)</span>
                   </>
                 )}
@@ -139,7 +206,7 @@ export default function CreativeProductSection() {
 
           {/* Right Block: Dynamic Mock Document View */}
           <div className="lg:col-span-8 bg-slate-950 rounded-3xl p-6 sm:p-10 border border-slate-800 relative shadow-2xl font-sans" id="creative-pdf-previewer">
-            <div className="absolute top-4 right-6 text-slate-650 text-xs font-mono select-none">
+            <div className="absolute top-4 right-6 text-slate-600 text-xs font-mono select-none">
               DỰ THẢO KIẾN NGHỊ · DO{targetCity.toUpperCase().substring(0,6)}
             </div>
 
@@ -160,18 +227,33 @@ export default function CreativeProductSection() {
             </div>
 
             {/* Document Sections */}
-            <div className="space-y-8 text-left max-h-[500px] overflow-y-auto pr-2 custom-scrollbar" id="document-scrollbar">
-              {mockDocument.sections.map((sec) => (
-                <div key={sec.key} className="space-y-3">
-                  <h4 className="text-xs sm:text-sm font-extrabold text-blue-300 tracking-wider uppercase font-sans flex items-center space-x-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                    <span>{sec.title}</span>
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-350 leading-relaxed whitespace-pre-line pl-3.5 border-l border-slate-900/60 font-normal">
-                    {sec.content}
-                  </p>
-                </div>
-              ))}
+            <div 
+              onScroll={handleDocScroll}
+              className="space-y-8 text-left max-h-[500px] overflow-y-auto pr-3 custom-scrollbar scroll-smooth" 
+              id="document-scrollbar"
+            >
+              {mockDocument.sections.map((sec) => {
+                const isHighlighted = activeDocSec === sec.key;
+                return (
+                  <div 
+                    key={sec.key} 
+                    id={`doc-section-${sec.key}`}
+                    className={`space-y-3 p-4 rounded-2xl border transition-all duration-500 ${
+                      isHighlighted
+                        ? "bg-purple-950/15 border-purple-500/25 shadow-lg shadow-purple-500/5"
+                        : "border-transparent opacity-50"
+                    }`}
+                  >
+                    <h4 className="text-xs sm:text-sm font-extrabold text-blue-300 tracking-wider uppercase font-sans flex items-center space-x-2">
+                      <span className={`w-1.5 h-1.5 rounded-full transition-transform ${isHighlighted ? "bg-purple-400 scale-125 animate-ping" : "bg-blue-400"}`} />
+                      <span>{sec.title}</span>
+                    </h4>
+                    <p className="text-xs sm:text-sm text-slate-350 leading-relaxed whitespace-pre-line pl-3.5 border-l border-slate-900/60 font-normal">
+                      {sec.content}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Document Footer stamp */}
