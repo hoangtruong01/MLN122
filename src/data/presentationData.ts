@@ -91,23 +91,23 @@ export const presentationData = {
         id: "sec-511",
         code: "5.1.1",
         title: "Khái niệm Kinh tế thị trường định hướng XHCN",
-        summary: "Nền kinh tế vận hành theo quy luật thị trường, đồng thời hướng tới các giá trị xã hội chủ nghĩa.",
+        summary: "Nền kinh tế vận hành theo các quy luật của thị trường, đồng thời từng bước xác lập một xã hội dân giàu, nước mạnh, dân chủ, công bằng, văn minh.",
         content: [
-          "Vừa tuân thủ các quy luật chung của kinh tế thị trường nhân loại, vừa có nét đặc thù dẫn dắt bởi mục tiêu xã hội chủ nghĩa.",
-          "Cơ chế quản lý hiện đại: Thị trường phân bổ nguồn lực, Nhà nước quản lý bằng pháp luật, nhân dân giám sát xã hội.",
-          "Mục tiêu tối thượng: Phát triển lực lượng sản xuất, xây dựng cơ sở vật chất kỹ thuật của chủ nghĩa xã hội, nâng cao đời sống toàn dân."
+          "Là nền kinh tế vận hành đầy đủ, đồng bộ theo các quy luật của thị trường, có sự điều tiết của Nhà nước pháp quyền XHCN do Đảng Cộng sản Việt Nam lãnh đạo.",
+          "Vừa bao hàm đầy đủ các đặc trưng chung vốn có của kinh tế thị trường nhân loại, vừa mang đặc trưng riêng phù hợp với lịch sử, trình độ phát triển và hoàn cảnh chính trị - xã hội của Việt Nam.",
+          "Định hướng XHCN thực chất là hướng tới các giá trị cốt lõi của xã hội mới: dân giàu, nước mạnh, dân chủ, công bằng, văn minh."
         ],
-        importance: "Cốt lõi bản chất cốt tử của mô hình kinh tế Việt Nam"
+        importance: "Cốt lõi bản chất của mô hình kinh tế Việt Nam"
       },
       {
         id: "sec-512",
         code: "5.1.2",
-        title: "Tính tất yếu khách quan của mô hình tương lai",
-        summary: "Phát triển mô hình này phù hợp xu thế khách quan của thời đại và thực tiễn lịch sử đất nước.",
+        title: "Tính tất yếu khách quan của việc phát triển mô hình",
+        summary: "Việc phát triển kinh tế thị trường định hướng XHCN ở Việt Nam là tất yếu khách quan, xuất phát từ ba lý do cơ bản.",
         content: [
-          "Phù hợp với quy luật phát triển biện chứng của lực lượng sản xuất và quan hệ sản xuất tại quốc gia đang phát triển như Việt Nam.",
-          "Phát huy tối đa các ưu thế vượt trội của kinh tế thị trường (giải phóng sức sản xuất, kích thích sáng tạo, phân bổ tối ưu tài nguyên).",
-          "Khắc phục triệt để các khuyết tật và thất bại mang tính hệ thống của kinh tế thị trường tự do/tư bản (phân hóa giàu nghèo, khủng hoảng kinh tế, suy thoái môi trường)."
+          "Một là, phù hợp với xu hướng phát triển khách quan của Việt Nam trong bối cảnh thế giới hiện nay: kinh tế hàng hóa tất yếu phát triển tới trình độ kinh tế thị trường, các điều kiện cho kinh tế thị trường đang tồn tại khách quan ở Việt Nam.",
+          "Hai là, do tính ưu việt của mô hình trong thúc đẩy phát triển: kinh tế thị trường là phương thức phân bổ nguồn lực hiệu quả, là động lực thúc đẩy lực lượng sản xuất phát triển nhanh và nâng cao năng suất lao động.",
+          "Ba là, phù hợp với nguyện vọng dân giàu, nước mạnh, dân chủ, công bằng, văn minh của nhân dân: phá vỡ tính tự cấp tự túc, đẩy mạnh phân công lao động, tạo việc làm và cải thiện đời sống nhân dân."
         ],
         importance: "Cơ sở lý luận khoa học giải thích lý do lựa chọn con đường này"
       },
@@ -115,11 +115,13 @@ export const presentationData = {
         id: "sec-513",
         code: "5.1.3",
         title: "Đặc trưng của Kinh tế thị trường định hướng XHCN",
-        summary: "Nền kinh tế có nhiều hình thức sở hữu, thành phần kinh tế, coi trọng công bằng xã hội.",
+        summary: "Mô hình được nhận diện qua năm đặc trưng: mục tiêu, sở hữu, quản lý, phân phối và quan hệ giữa tăng trưởng với công bằng xã hội.",
         content: [
-          "Về sở hữu: Đa dạng sở hữu với nhiều thành phần kinh tế. Kinh tế nhà nước giữ vai trò chủ đạo, dẫn dắt các ngành then chốt. Kinh tế tư nhân là một động lực quan trọng của nền kinh tế.",
-          "Về phân phối: Thực hiện nhiều hình thức phân phối, trong đó phân phối theo kết quả lao động và hiệu quả kinh tế là chủ yếu, kết hợp với phân phối theo phúc lợi và an sinh xã hội.",
-          "Về quan hệ xã hội: Gắn kết hài hòa giữa tăng trưởng kinh tế và bảo đảm tiến bộ, công bằng xã hội ngay trong từng chính sách."
+          "Về mục tiêu: Phát triển lực lượng sản xuất, xây dựng cơ sở vật chất - kỹ thuật của CNXH, nâng cao đời sống nhân dân, thực hiện \"dân giàu, nước mạnh, dân chủ, công bằng, văn minh\".",
+          "Về sở hữu và thành phần kinh tế: Nhiều hình thức sở hữu, nhiều thành phần kinh tế bình đẳng trước pháp luật; kinh tế nhà nước giữ vai trò chủ đạo, kinh tế tư nhân là một động lực quan trọng.",
+          "Về quản lý: Nhà nước pháp quyền XHCN của dân, do dân, vì dân, dưới sự lãnh đạo của Đảng, quản lý bằng pháp luật, chiến lược, kế hoạch và công cụ kinh tế để khắc phục khuyết tật thị trường.",
+          "Về phân phối: Phân phối công bằng yếu tố đầu vào và phân phối kết quả đầu ra chủ yếu theo kết quả lao động, hiệu quả kinh tế, mức đóng góp vốn cùng hệ thống an sinh, phúc lợi xã hội.",
+          "Về tăng trưởng và công bằng: Gắn tăng trưởng kinh tế với tiến bộ, công bằng xã hội ngay trong từng chính sách; không \"hy sinh\" công bằng để chạy theo tăng trưởng đơn thuần."
         ],
         importance: "Nhận diện sự khác biệt rõ nét nhất so với kinh tế thị trường TBCN"
       },
@@ -127,15 +129,50 @@ export const presentationData = {
         id: "sec-52",
         code: "5.2",
         title: "Hoàn thiện thể chế kinh tế thị trường định hướng XHCN",
-        summary: "Nâng cao năng lực pháp luật, chính sách, hệ thống quản lý để vận hành tối ưu.",
+        summary: "Thể chế còn chưa đồng bộ, đầy đủ và hiệu lực chưa cao, do đó cần hoàn thiện trên bốn nhóm nội dung trọng tâm.",
         content: [
-          "Hoàn thiện hệ thống luật pháp về quyền sở hữu đất đai, tài sản trí tuệ và bảo hộ nhà đầu tư nhằm tạo niềm tin kinh doanh vững chắc.",
-          "Phát triển đồng bộ, lành mạnh các loại thị trường: thị trường hàng hóa dịch vụ, thị trường tài chính, thị trường lao động, đặc biệt là thị trường bất động sản.",
-          "Cải cách hành chính sâu rộng, tăng cường tính minh bạch, nâng cao năng lực kiến tạo và điều tiết vĩ mô của bộ máy Nhà nước."
+          "Hoàn thiện thể chế về sở hữu và phát triển các thành phần kinh tế: thể chế hóa quyền tài sản, hoàn thiện pháp luật đất đai, sở hữu trí tuệ; tạo mặt bằng pháp lý bình đẳng cho mọi doanh nghiệp.",
+          "Phát triển đồng bộ các yếu tố thị trường và các loại thị trường: hàng hóa, giá cả, cạnh tranh, cung cầu vận hành theo nguyên tắc thị trường; phát triển thị trường vốn, công nghệ, sức lao động, bất động sản.",
+          "Gắn tăng trưởng kinh tế với tiến bộ, công bằng xã hội và thúc đẩy hội nhập quốc tế, đa phương hóa, đa dạng hóa, không lệ thuộc vào một số ít thị trường.",
+          "Nâng cao năng lực lãnh đạo của Đảng, vai trò quản lý của Nhà nước và phát huy vai trò làm chủ của nhân dân."
         ],
-        importance: "Nhiệm vụ cấp bách thúc đẩy chuyển đổi số và hội nhập quốc tế"
+        importance: "Nhiệm vụ cấp bách để nền kinh tế vận hành thông suốt và hội nhập quốc tế"
       }
     ] as TheoryCard[]
+  },
+
+  comparison: {
+    title: "So sánh hai mô hình kinh tế thị trường",
+    subtitle: "Trả lời yêu cầu 1 của tình huống: phân biệt Kinh tế thị trường TBCN và Kinh tế thị trường định hướng XHCN",
+    leftLabel: "KTTT Tư bản chủ nghĩa",
+    rightLabel: "KTTT định hướng XHCN ở Việt Nam",
+    rows: [
+      {
+        criterion: "Mục tiêu sản xuất",
+        capitalist: "Chủ yếu phục vụ lợi ích của thiểu số giai cấp tư sản và các tập đoàn độc quyền, nhằm tối đa hóa giá trị thặng dư.",
+        socialist: "Nâng cao đời sống toàn thể nhân dân lao động, hướng tới \"dân giàu, nước mạnh, dân chủ, công bằng, văn minh\"."
+      },
+      {
+        criterion: "Sở hữu & thành phần kinh tế",
+        capitalist: "Dựa trên chế độ chiếm hữu tư nhân tư bản chủ nghĩa về tư liệu sản xuất.",
+        socialist: "Nhiều hình thức sở hữu, nhiều thành phần kinh tế; kinh tế nhà nước chủ đạo, kinh tế tư nhân là động lực quan trọng."
+      },
+      {
+        criterion: "Quản lý & điều tiết vĩ mô",
+        capitalist: "Nhà nước tư sản quản lý, thường bị chi phối bởi các tập đoàn tài phiệt và nhóm lợi ích tư nhân.",
+        socialist: "Nhà nước pháp quyền XHCN của dân, do dân, vì dân, dưới sự lãnh đạo của Đảng, bảo đảm lợi ích nhân dân."
+      },
+      {
+        criterion: "Quan hệ phân phối",
+        capitalist: "Phân phối theo mức sở hữu tư bản, dẫn đến phân cực giàu nghèo và bần cùng hóa người lao động làm thuê.",
+        socialist: "Phân phối công bằng đầu vào; đầu ra chủ yếu theo kết quả lao động, hiệu quả kinh tế, mức đóng góp vốn và qua an sinh, phúc lợi."
+      },
+      {
+        criterion: "Tăng trưởng & công bằng xã hội",
+        capitalist: "Chỉ giải quyết công bằng xã hội hạn chế, khi khuyết tật thị trường đe dọa sự tồn vong của chế độ.",
+        socialist: "Thực hiện tiến bộ và công bằng xã hội ngay trong từng chính sách, từng giai đoạn; không chờ tăng trưởng cao mới làm công bằng."
+      }
+    ]
   },
 
   situation: {
@@ -143,12 +180,12 @@ export const presentationData = {
     subtitle: "Bài toán nhà ở xã hội và thị trường bất động sản Việt Nam hiện nay",
     narrative: {
       problem: "Nhu cầu nhà ở của người lao động có thu nhập thấp và trung bình là vô cùng lớn, đặc biệt là thế hệ trẻ mới ra trường có thu nhập từ 10 - 15 triệu đồng/tháng. Trong khi đó, các căn hộ thương mại tại Hà Nội hay TP.HCM liên tục đạt đỉnh mới, trung bình 55-80 triệu/m², khiến ước mơ sở hữu nhà vượt xa tầm tay của đại đa số người dân.",
-      challenge: "Dù cơ quan quản lý liên tục kêu gọi, ban hành nhiều gói hỗ trợ lãi suất kích cầu và miễn thuế sử dụng đất để khuyến khích phát triển nhà ở xã hội, nhưng các doanh nghiệp bất động sản tư nhân vẫn ưu tiên dồn lực lượng vốn và quỹ đất sạch để xây dựng phân khúc chung cư cao cấp do biên lợi nhuận cực cao (lên đến 30 - 50%), thay vì phân khúc bình nông có tính chất thu hồi vốn chậm và bị khống chế trần lợi nhuận.",
+      challenge: "Dù cơ quan quản lý liên tục kêu gọi, ban hành nhiều gói hỗ trợ lãi suất kích cầu và miễn thuế sử dụng đất để khuyến khích phát triển nhà ở xã hội, nhưng các doanh nghiệp bất động sản tư nhân vẫn ưu tiên dồn vốn và quỹ đất sạch để xây dựng phân khúc chung cư cao cấp do biên lợi nhuận cực cao (lên đến 30 - 50%), thay vì phân khúc bình dân vốn thu hồi chậm và bị khống chế trần lợi nhuận.",
       dilemma: "Nếu hoàn toàn để thị trường tự điều tiết dựa trên quy luật cung cầu tự do, người dân nghèo và người thu nhập thấp đô thị sẽ mãi mãi không có cơ hội tiếp cận nhà ở. Ngược lại, nếu Nhà nước sử dụng mệnh lệnh hành chính ép buộc quá mạnh tay hoặc bao cấp toàn bộ, nền kinh tế sẽ bộc lộ khuyết tật kém hiệu quả, triệt tiêu động lực kinh doanh của khối doanh nghiệp tư nhân, vi phạm nguyên tắc tự do kinh doanh hiến định."
     },
     infographics: [
       { label: "Mức lương giới trẻ", value: "10-15 triệu", unit: "/tháng", desc: "Không đủ trả góp căn hộ thương mại" },
-      { label: "Giá chung cư Hà Nội - HCM", value: "2.5 - 4 tỷ", unit: "/căn trung cấp", desc: "Tương đương 25-30 năm tích lũy" },
+      { label: "Giá chung cư Hà Nội - HCM", value: "3 - 5 tỷ", unit: "/căn trung cấp", desc: "Tương đương 25-30 năm tích lũy" },
       { label: "Lợi nhuận cao cấp", value: "30% - 50%", unit: "biên lợi nhuận", desc: "Hút dòng tiền đầu tư của các tập đoàn" },
       { label: "Tỷ lệ dự án nhà ở xã hội đạt mục tiêu", value: "Chỉ ~35%", unit: "kế hoạch 2025", desc: "Thiếu hụt nguồn cung trầm trọng" }
     ]
@@ -168,7 +205,7 @@ export const presentationData = {
         id: "q2",
         label: "Câu hỏi thảo luận 2",
         question: "Trong tình huống phát triển nhà ở xã hội, cơ chế tự điều tiết của 'Bàn tay vô hình' thị trường đã rơi vào trạng thái thất bại ở điểm nào? Nhà nước định hướng XHCN cần can thiệp bằng những công cụ kinh tế vĩ mô cụ thể nào để hài hòa lợi ích giữa Người dân và Doanh nghiệp?",
-        guideline: "Xác định rõ bản chất thất bại thị trường ở đây là 'ngoại ứng tiêu cực học thuyết' (phân phối không công bằng, bỏ qua phúc lợi cơ bản). Làm rõ bộ công cụ tài chính, chính sách thuế, tiền tệ, quy hoạch đất đai để biến nhà ở xã hội trở thành sản phẩm kinh tế hấp dẫn với doanh nghiệp nhưng bình dân với người dân."
+        guideline: "Xác định rõ bản chất thất bại thị trường ở đây là phân phối không công bằng và bỏ qua nhu cầu phúc lợi cơ bản (an cư). Làm rõ bộ công cụ tài chính, chính sách thuế, tín dụng - lãi suất, quy hoạch đất đai để biến nhà ở xã hội thành sản phẩm hấp dẫn với doanh nghiệp nhưng vừa túi tiền với người dân."
       }
     ]
   },
@@ -296,7 +333,7 @@ export const presentationData = {
       {
         title: "Nhà nước giữ vai trò kiến tạo vĩ mô sắc sảo",
         desc: "Nhà nước định hướng XHCN không bóp nghẹt thị trường, không ôm đồm quản trị bao cấp cũ, mà đóng vai trò dẫn dắt bằng chính sách luật lệ thông minh, dùng đòn bẩy tài chính để tối ưu hóa nguồn lực cho an sinh.",
-        keyword: "ĐĂNG CAI Thiết lập"
+        keyword: "KIẾN TẠO Vĩ mô"
       },
       {
         title: "Phát triển bền vững phải hài hòa các quan hệ lợi ích",
@@ -327,7 +364,7 @@ export const presentationData = {
         id: "faq-3",
         category: "Định hướng XHCN",
         question: "3. Thể hiện rõ nét tính định hướng xã hội chủ nghĩa trong chính sách nhà ở xã hội của Việt Nam nằm ở đâu?",
-        answer: "Nằm ở 3 yếu tố cốt tử:\n- Mục đích tối thượng: Đảm bảo quyền có nơi ở hợp pháp của người dân có hoàn cảnh khó khăn hơn mục tiêu kiếm lời thuần túy.\n- Nhà nước trực tiếp kiểm duyệt giá bán tối đa, kiểm soát chặt chẽ đối tượng mua hàng bảo đảm của cải xã hội đến đúng tay những chú công nhân, người vô gia cư có công hoặc người có thu nhập thấp đô thị.\n- Sự chấp nhận bù lỗ, cung cấp tài nguyên đất công miễn phí để làm đòn bẩy xã hội."
+        answer: "Nằm ở 3 yếu tố cốt lõi:\n- Mục đích tối thượng: Bảo đảm quyền có chỗ ở hợp pháp của người dân có hoàn cảnh khó khăn, đặt trên mục tiêu kiếm lời thuần túy.\n- Nhà nước trực tiếp kiểm soát giá bán tối đa và đối tượng được mua, bảo đảm của cải xã hội đến đúng tay công nhân, người có công và người thu nhập thấp đô thị.\n- Sự chấp nhận bù đắp chi phí, cung cấp tài nguyên đất công ưu đãi để làm đòn bẩy an sinh xã hội."
       },
       {
         id: "faq-4",

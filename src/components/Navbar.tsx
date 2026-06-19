@@ -28,6 +28,7 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
     { label: "Trang chủ", id: "hero" },
     { label: "Lý thuyết", id: "ly-thuyet" },
     { label: "Tình huống", id: "tinh-huong" },
+    { label: "So sánh", id: "so-sanh" },
     { label: "Phân tích", id: "phan-tich" },
     { label: "Giải pháp", id: "giai-phap" },
     { label: "Sản phẩm", id: "san-pham" },
@@ -75,7 +76,7 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
                   key={item.id}
                   id={`nav-item-${item.id}`}
                   onClick={() => handleClick(item.id)}
-                  className={`relative px-4 py-2 rounded-xl text-sm font-medium tracking-wide transition-all duration-200 cursor-pointer ${
+                  className={`relative px-3 lg:px-4 py-2 rounded-xl text-sm font-medium tracking-wide transition-all duration-200 cursor-pointer ${
                     isActive
                       ? "text-blue-300 font-semibold"
                       : "text-slate-300 hover:text-white hover:bg-slate-800/40"

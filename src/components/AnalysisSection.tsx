@@ -36,18 +36,31 @@ export default function AnalysisSection() {
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
+  // The interpretive summary note — rendered inside the section on mobile,
+  // and OUTSIDE the locked viewport on desktop so it never gets clipped.
+  const summaryNote = (
+    <div className="p-6 bg-gradient-to-r from-blue-950/20 to-teal-950/20 border border-blue-500/10 rounded-2xl text-center max-w-4xl mx-auto" id="analysis-summary-note">
+      <p className="text-xs sm:text-sm text-slate-350 leading-relaxed">
+        <strong className="text-white">Điểm cốt lõi lý luận:</strong> Phát triển nhà ở xã hội không phải là gánh nặng hành chính, mà là sự thể hiện sắc nét tính ưu việt của phát triển bền vững đi đôi với công bằng xã hội — thuộc bản chất riêng của kinh tế thị trường định hướng XHCN ở Việt Nam.
+      </p>
+    </div>
+  );
+
   return (
-    <div 
-      ref={containerRef} 
-      className={`relative ${isLargeScreen ? "h-[250vh]" : "h-auto py-24"} bg-slate-900 border-y border-slate-950`}
+    <>
+    <div
+      ref={containerRef}
+      className={`relative ${isLargeScreen ? "h-[250vh]" : "h-auto py-24"} bg-slate-900 border-t border-slate-950`}
     >
-      <div className={`${isLargeScreen ? "sticky top-0 h-screen flex flex-col justify-center overflow-hidden" : "relative"}`}>
-        
-        {/* Decorative Grid and Blur */}
-        <div className="absolute top-10 left-10 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-600/5 rounded-full blur-3xl" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mb-12">
+      <div className={`${isLargeScreen ? "sticky top-0 h-screen flex flex-col overflow-hidden" : "relative"}`}>
+
+        {/* Decorative Grid and Blur (clipped, never intercept clicks) */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-10 left-10 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-600/5 rounded-full blur-3xl" />
+        </div>
+
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full ${isLargeScreen ? "pt-24 pb-6 shrink-0" : "mb-12"}`}>
           {/* ================= HEADER ================= */}
           <div className="text-center max-w-3xl mx-auto">
             <motion.div
@@ -59,7 +72,7 @@ export default function AnalysisSection() {
               <Layers className="w-3.5 h-3.5 text-blue-400" />
               <span>Phân tích học thuyết lý luận</span>
             </motion.div>
-            
+
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
               {title}
             </h2>
@@ -70,10 +83,10 @@ export default function AnalysisSection() {
         </div>
 
         {/* ================= PILLARS CONTAINER ================= */}
-        <div className="w-full relative z-10">
-          <motion.div 
+        <div className={`w-full relative z-10 ${isLargeScreen ? "flex-1 flex items-center min-h-0 overflow-y-auto overflow-x-hidden custom-scrollbar" : ""}`}>
+          <motion.div
             style={{ x: isLargeScreen ? x : 0 }}
-            className={`flex ${isLargeScreen ? "flex-row px-24 w-[140vw]" : "flex-col px-4 gap-8 max-w-7xl mx-auto"} gap-8`}
+            className={`flex ${isLargeScreen ? "flex-row px-24 w-[140vw] py-2" : "flex-col px-4 gap-8 max-w-7xl mx-auto"} gap-8`}
             id="analysis-pillars-grid"
           >
             {pillars.map((pillar, idx) => {
@@ -155,30 +168,37 @@ export default function AnalysisSection() {
           </motion.div>
         </div>
 
-        {/* ================= SUMMARY NOTE & TRACKING PROGRESS ================= */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-12 space-y-8">
-          <div className="p-6 bg-gradient-to-r from-blue-950/20 to-teal-950/20 border border-blue-500/10 rounded-2xl text-center" id="analysis-summary-note">
-            <p className="text-xs sm:text-sm text-slate-350 leading-relaxed max-w-4xl mx-auto">
-              <strong className="text-white">Điểm cốt lõi lý luận:</strong> Phát triển nhà ở xã hội không phải là gánh nặng hành chính, mà là việc hiện sắc nét tính ưu việt của phát triển bền vững đi đôi với công bằng xã hội thuộc bản chất riêng của kinh tế thị trường định hướng XHCN Việt Nam.
-            </p>
-          </div>
-
-          {/* Desktop Visual Scroll Indicator */}
-          {isLargeScreen && (
-            <div className="w-full flex items-center justify-between max-w-xl mx-auto pt-4">
+        {/* ================= FOOTER: PROGRESS (desktop) / SUMMARY (mobile) ================= */}
+        {isLargeScreen ? (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full shrink-0 pb-8">
+            <div className="w-full flex items-center justify-between max-w-xl mx-auto">
               <span className="text-[10px] uppercase font-bold tracking-widest text-slate-650 font-mono">Cuộn tiếp để xem</span>
               <div className="flex-1 mx-6 h-1 bg-slate-950 rounded-full overflow-hidden relative">
-                <motion.div 
+                <motion.div
                   style={{ width: progressBarWidth }}
                   className="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-500 to-teal-400"
                 />
               </div>
               <span className="text-[10px] uppercase font-bold tracking-widest text-slate-650 font-mono">Hoàn thành</span>
             </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-12">
+            {summaryNote}
+          </div>
+        )}
 
       </div>
     </div>
+
+    {/* On desktop the summary lives AFTER the locked scroll viewport so it is never clipped */}
+    {isLargeScreen && (
+      <div className="bg-slate-900 border-b border-slate-950 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {summaryNote}
+        </div>
+      </div>
+    )}
+    </>
   );
 }

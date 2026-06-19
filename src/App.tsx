@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import TheorySection from "./components/TheorySection";
 import SituationSection from "./components/SituationSection";
+import ComparisonSection from "./components/ComparisonSection";
 import AnalysisSection from "./components/AnalysisSection";
 import PolicySection from "./components/PolicySection";
 import CreativeProductSection from "./components/CreativeProductSection";
@@ -47,7 +48,7 @@ export default function App() {
 
   // Intersection Observer / Scroll spy to update Navbar active indicator on scroll
   useEffect(() => {
-    const sections = ["hero", "ly-thuyet", "tinh-huong", "phan-tich", "giai-phap", "san-pham", "qa"];
+    const sections = ["hero", "ly-thuyet", "tinh-huong", "so-sanh", "phan-tich", "giai-phap", "san-pham", "qa"];
     
     const handleScrollSpy = () => {
       // Toggle back to top button visibility
@@ -92,7 +93,9 @@ export default function App() {
         <TheorySection />
         
         <SituationSection />
-        
+
+        <ComparisonSection />
+
         <AnalysisSection />
         
         <PolicySection />

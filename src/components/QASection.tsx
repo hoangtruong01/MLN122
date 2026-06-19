@@ -241,8 +241,8 @@ export default function QASection() {
                 <User className="w-4 h-4" />
               </div>
               <div>
-                <p className="text-[10px] text-slate-500 italic">Trưởng nhóm kiểm soát:</p>
-                <p className="text-xs font-semibold text-slate-350">Hệ thống hỗ trợ đỗ kết quả tự động MLN122_C5</p>
+                <p className="text-[10px] text-slate-500 italic">Hệ thống phụ trách:</p>
+                <p className="text-xs font-semibold text-slate-350">Trợ lý mô phỏng lý luận Chương 5 · MLN122_C5</p>
               </div>
             </div>
           </div>

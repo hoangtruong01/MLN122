@@ -207,7 +207,7 @@ export default function CreativeProductSection() {
           {/* Right Block: Dynamic Mock Document View */}
           <div className="lg:col-span-8 bg-slate-950 rounded-3xl p-6 sm:p-10 border border-slate-800 relative shadow-2xl font-sans" id="creative-pdf-previewer">
             <div className="absolute top-4 right-6 text-slate-600 text-xs font-mono select-none">
-              DỰ THẢO KIẾN NGHỊ · DO{targetCity.toUpperCase().substring(0,6)}
+              DỰ THẢO KIẾN NGHỊ · {targetCity.toUpperCase().substring(0,6)}
             </div>
 
             {/* Document Header */}
@@ -264,7 +264,7 @@ export default function CreativeProductSection() {
               </div>
               <div className="flex items-center space-x-1.5 bg-emerald-500/10 px-3 py-1.5 rounded-lg border border-emerald-500/20 text-emerald-300 text-xs font-mono font-bold">
                 <Check className="w-4 h-4" />
-                <span>BẢN THOẢ HỢP LỆ VÀ SẴN SÀNG TRÌNH BÀY</span>
+                <span>BẢN THẢO HỢP LỆ VÀ SẴN SÀNG TRÌNH BÀY</span>
               </div>
             </div>
           </div>
@@ -306,7 +306,7 @@ export default function CreativeProductSection() {
                   <div className="relative pl-6 border-l-2 border-dashed border-slate-800 space-y-4">
                     <div className="relative">
                       <span className="absolute -left-[30px] top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-slate-900" />
-                      <h4 className="text-sm font-bold text-blue-300">Bước 1: Chuyển giao Đất sạch quy hoạch sẫn</h4>
+                      <h4 className="text-sm font-bold text-blue-300">Bước 1: Chuyển giao đất sạch đã quy hoạch sẵn</h4>
                       <p className="text-xs text-slate-400 leading-relaxed mt-1">
                         Nhà nước trực tiếp hoàn thiện quy hoạch hạ tầng kết nối, đền bù và thu hồi đất sạch rồi bàn giao miễn phí hoặc ưu đãi đất rẻ cho doanh nghiệp đạt chuẩn.
                       </p>
@@ -316,7 +316,7 @@ export default function CreativeProductSection() {
                       <span className="absolute -left-[30px] top-1 w-4 h-4 rounded-full bg-teal-500 border-4 border-slate-900" />
                       <h4 className="text-sm font-bold text-teal-300">Bước 2: Hỗ trợ Tín dụng thông qua Voucher</h4>
                       <p className="text-xs text-slate-400 leading-relaxed mt-1">
-                        Thay vì bao cấp nhà mạng chung, Nhà nước hỗ trợ lãi suất cho người lao động thu nhập thấp thông qua các gói vay số tích hợp (VNeID) nhằm minh bạch tuyệt đối đối tượng tiếp cận quỹ an sinh.
+                        Thay vì bao cấp tràn lan, Nhà nước hỗ trợ lãi suất cho người lao động thu nhập thấp thông qua các gói vay số tích hợp (VNeID) nhằm minh bạch tuyệt đối đối tượng tiếp cận quỹ an sinh.
                       </p>
                     </div>
 

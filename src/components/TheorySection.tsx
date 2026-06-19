@@ -70,10 +70,13 @@ export default function TheorySection() {
   };
 
   return (
-    <section id="ly-thuyet" className="py-24 bg-slate-900 relative overflow-hidden">
-      {/* Decorative Blur Backgrounds */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl" />
+    <section id="ly-thuyet" className="py-24 bg-slate-900 relative">
+      {/* Decorative Blur Backgrounds — clipped in an inner wrapper so the section itself
+          does NOT use overflow-hidden (which would break the sticky right panel below). */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -239,11 +242,15 @@ export default function TheorySection() {
                   </div>
                 );
               })}
+
+              {/* Bottom spacer: keeps the sticky panel pinned long enough for the
+                  last card (5.2) to become active and fully display before the grid ends. */}
+              <div className="hidden lg:block h-[40vh]" aria-hidden="true" />
             </div>
 
             {/* Right Col - Sticky Details Presentation Panel */}
             <div className="hidden lg:block lg:col-span-6 lg:sticky lg:top-32 self-start" id="theory-right-detail">
-              <div className="bg-slate-950/60 border border-slate-800 rounded-3xl p-8 min-h-[460px] shadow-2xl flex flex-col justify-between relative backdrop-blur-xl">
+              <div className="bg-slate-950/60 border border-slate-800 rounded-3xl p-8 min-h-[460px] max-h-[calc(100vh-9rem)] overflow-y-auto custom-scrollbar shadow-2xl flex flex-col justify-between relative backdrop-blur-xl">
                 {/* Glowing Top line accent */}
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
                 
