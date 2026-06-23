@@ -16,6 +16,7 @@ import PolicySection from "./components/PolicySection";
 import CreativeProductSection from "./components/CreativeProductSection";
 import ConclusionSection from "./components/ConclusionSection";
 import QASection from "./components/QASection";
+import MonkeyLuckyQuiz from "./components/MonkeyLuckyQuiz";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -48,7 +49,7 @@ export default function App() {
 
   // Intersection Observer / Scroll spy to update Navbar active indicator on scroll
   useEffect(() => {
-    const sections = ["hero", "ly-thuyet", "tinh-huong", "so-sanh", "phan-tich", "giai-phap", "san-pham", "qa"];
+    const sections = ["hero", "ly-thuyet", "tinh-huong", "so-sanh", "phan-tich", "giai-phap", "san-pham", "qa", "game-quiz"];
     
     const handleScrollSpy = () => {
       // Toggle back to top button visibility
@@ -105,6 +106,7 @@ export default function App() {
         <ConclusionSection />
         
         <QASection />
+        <MonkeyLuckyQuiz />
       </main>
 
       {/* BACK TO TOP FLOATING BUTTON */}

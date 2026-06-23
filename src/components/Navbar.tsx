@@ -33,6 +33,7 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
     { label: "Giải pháp", id: "giai-phap" },
     { label: "Sản phẩm", id: "san-pham" },
     { label: "Q&A", id: "qa" },
+    { label: "Lucky Quiz", id: "game-quiz" },
   ];
 
   const handleClick = (id: string) => {
